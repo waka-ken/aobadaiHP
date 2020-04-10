@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--font-awesomeのスタイルシートの呼び出し-->
+
+  <!-- <title>シェアリザイド青葉台｜ホームページ</title> -->
+  <!--システム・プラグイン用-->
+</head>
+
+<body>
+  <header>
+    <header class="header">
+      <!-- スマホ用ナビゲーションメニュー -->
+      <div id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <div id="nav-content">ここに中身を入れる</div>
+      </div>
+      <!-- スマホ用ナビゲーションメニュー終わり -->
+      <!-- pc＆タブレット用ナビゲーションメニュー -->
+      <div>
+
+      </div>
+      <!-- pc＆タブレット用ナビゲーションメニュー終わり -->
+    </header>
+  </header>
+
+  <main class="main">
+    <section>
+      <div class="jumbotron fixed-bg">
+        <div class="center-text">
+          <h1 class="catchcopy">
+            <span class="okaeri scroll-fade">「おかえり」</span>が広がる空間
+          </h1>
+          <h2 class="house-name">シェアリザイド青葉台</h2>
+        </div>
+
+      </div>
+    </section>
+    <section class="article">
+      <div class="back-morning">
+        morning
+      </div>
+      <div class="over-lay">
+        <div class="article1-text">
+          <h2>「朝の始まりは１杯の淹れたてのコーヒー。」</h2>
+          <p>窓から差し込む朝日と美味しいコーヒーで優雅な時間を過ごす。</p>
+          <p>コーヒーは専用のコーヒーメーカーを用意。</p>
+          <p>香りと味にはこだわりがあります。</p>
+        </div>
+        <div class="img-area scroll-fade">
+          <img class="morning-img1" src="./images/image07.jpg">
+          <img class="morning-img2" src="./images/image06.jpg">
+          <img class="morning-img3" src="./images/image09.jpg">
+        </div>
+
+      </div>
+    </section>
+    <section class="article">
+      <div class="back-afternoon">
+        afternoon
+      </div>
+      <div class="over-lay">
+        <div class="article2-text">
+          <h2>「お洒落なキッチンでランチタイム」</h2>
+          <p>ちょっとお腹が空いてくるとキッチンから良い匂いが…</p>
+          <p>最新の調理器具を調理器具を揃えました。</p>
+          <p>いつもはできない料理も挑戦したくなるかも。</p>
+        </div>
+        <div class="img-area scroll-fade">
+          <img class="afternoon-img1" src="./images/image05.jpg">
+          <img class="afternoon-img2" src="./images/image10.jpg">
+
+        </div>
+
+      </div>
+    </section>
+    <section class="article">
+      <div class="back-evening">
+        evening
+      </div>
+      <div class="over-lay">
+        <div class="article3-text">
+          <h2>「夜は同じシェアハウスメンバーと談笑」</h2>
+          <p>夜になるとだんたんと人が集まり出す。</p>
+          <p>テレビを見たりシアタールームで好きな映画を見たり…</p>
+          <p>広い空間をそれぞれが好きなことをして過ごします。</p>
+        </div>
+        <div class="img-area scroll-fade">
+          <img class="evening-img1" src="./images/image08.jpg">
+          <img class="evening-img2" src="./images/image11.jpg">
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+  <footer id="footer" class="footer">
+    <div class="footer-inner">
+
+    </div>
+    <!--end footer-inner-->
+  </footer>
+</body>
+
+<!-- jqueryの読み込み -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+<script>
+  //  自作のコードはライブラリ読み込みの後に。
+  $(function () {
+
+    var effect_btm = 300; // 画面下からどの位置でフェードさせるか(px)
+    var effect_move = 50; // どのぐらい要素を動かすか(px)
+    var effect_time = 1500; // エフェクトの時間(ms) 1秒なら1000
+
+    //親要素と子要素のcssを定義
+    $('.scroll-fade').css({
+      opacity: 0
+    });
+    $('.scroll-fade').children().each(function () {
+      $(this).css({
+        opacity: 0,
+        transform: 'translateY(' + effect_move + 'px)',
+        transition: effect_time + 'ms'
+      });
+    });
+
+    // スクロールまたはロードするたびに実行
+    $(window).on('scroll load', function () {
+      var scroll_top = $(this).scrollTop();
+      var scroll_btm = scroll_top + $(this).height();
+      var effect_pos = scroll_btm - effect_btm;
+
+      //エフェクトが発動したとき、子要素をずらしてフェードさせる
+      $('.scroll-fade').each(function () {
+        var this_pos = $(this).offset().top;
+        if (effect_pos > this_pos) {
+          $(this).css({
+            opacity: 1,
+            transform: 'translateY(0)'
+          });
+          $(this).children().each(function (i) {
+            $(this).delay(100 + i * 300).queue(function () {
+              $(this).css({
+                opacity: 1,
+                transform: 'translateY(0)'
+              }).dequeue();
+            });
+          });
+        }
+      });
+    });
+
+  });
+
+</script>
+</html>
